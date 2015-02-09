@@ -9,16 +9,13 @@ React component for rendering responsive images. Attempts to implement `<img src
 Then use in your react app like so:
 
 ```
-var Picture = require('react-picture').Picture
+var Img = require('react-picture').Image
 ...
    render: function() {
-   	  var imgs = [
-   	  	"//placebacon.net/200/150 600w",
-		"//placebacon.net/300/300 800w"
-   	  ];
+   	  var imgs = "//placebacon.net/200/150 600w, //placebacon.net/300/300 800w";
 
       return (
-      	<Picture alt="Your picture description" imgArray={imgs} />
+      	<Img alt="Your picture description" srcSet={imgs} extra={{className="myImg"}}/>
       );
    }
 ...
@@ -26,14 +23,15 @@ var Picture = require('react-picture').Picture
 
 The following properties can be passed to the Picture component:
 - `alt` - Required and describes your picture
-- `imgArray` - Required and consists of a set of strings formatted like srcset, each describing a picture
-- `uri` - Optional and prepends an uri to each picture in the imgArray (Not yet implemented)
-- `nativeSupport` - Optional bool which when true forces srcset rendering. When false, it uses our implementation.
+- `srcSet` - Required and consists of a string formated like srcset
+- `nativeSupport` - Optional bool which when true forces srcset rendering. When false, it forces our implementation. This option is set to true by default unless we detect the browser does not support it.
+- `updateOnResize` - Optional bool which decides if the image is resized when viewport changes (only takes effect when nativeSupport is false). True by default.
+- `extra` - Optional object which contains properties that will be put on img tag
 
 ## Features
 
 - Use `<img srcset>` when supported
-- Implement srcset support for browsers that do not have it, using javascript
+- Implement srcset support for browsers that do not have it, using javascript. Currently missing sizes implementation.
 
 ## Roadmap
 
