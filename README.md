@@ -51,6 +51,11 @@ The following properties can be passed to the Picture component:
 - PictureContainer
 - Karma tests
 
+## References
+
+- [The picture element](http://www.w3.org/html/wg/drafts/html/master/embedded-content.html#the-picture-element)
+- [The img element](http://www.w3.org/html/wg/drafts/html/master/embedded-content.html#the-img-element)
+
 ## Alternative libraries
 
 - If you are not using react in your app, [BBC-News/Imager.js](https://github.com/BBC-News/Imager.js) is a very good library
