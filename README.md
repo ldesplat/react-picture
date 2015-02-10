@@ -1,6 +1,6 @@
 # react-picture
 
-React component for rendering responsive images. Attempts to implement `<img srcset=...>` support in non-compliant browsers, otherwize renders the native `<img srcset>`
+React component for rendering responsive images. Attempts to implement `<img srcset=...>` support in non-compliant browsers, otherwize renders the native `<img srcset>`. Will eventually support Picture & Source elements.
 
 ## How to use
 
@@ -35,6 +35,16 @@ The following properties can be passed to the Picture component:
 
 ## Roadmap
 
+### 0.0.2
+- Tests
+- Rubber bands state changes (time delay/group the resize events)
+
+### 0.0.3
+- TBD
+
+### 0.1.0
+- Implement sizes attribute
+
 ### 1.0
 - Stable API
 - Correct implementation of match method
@@ -48,6 +58,10 @@ The following properties can be passed to the Picture component:
 ### To be discussed
 - PictureContainer
 - Karma tests
+
+### 2.0
+- Picture element
+- Source element
 
 ## References
 
