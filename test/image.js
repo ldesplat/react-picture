@@ -14,7 +14,6 @@ var after = lab.after;
 var describe = lab.experiment;
 var it = lab.test;
 
-require('node-jsx').install();
 var Img = require('..').Image;
 
 describe('Image Component', function() {
