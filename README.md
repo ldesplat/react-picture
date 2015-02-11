@@ -1,4 +1,5 @@
 # react-picture
+[![Build Status](https://travis-ci.org/ldesplat/react-picture.svg?branch=master)](https://travis-ci.org/ldesplat/react-picture)
 
 React component for rendering responsive images. Attempts to implement `<img srcset=...>` support in non-compliant browsers, otherwize renders the native `<img srcset>`. Will eventually support Picture & Source elements.
 
