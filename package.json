@@ -4,8 +4,8 @@
   "description": "Responsive images component for React.JS",
   "main": "./lib/index",
   "scripts": {
-    "test": "scripts/test",
-    "start": "scripts/examples",
+    "test": "lab -t 100",
+    "start": "webpack-dev-server --inline --content-base examples/",
     "build": "scripts/build"
   },
   "repository": {
@@ -29,13 +29,14 @@
   "devDependencies": {
     "browserify": "^8.1.3",
     "browserify-shim": "^3.8.2",
+    "code": "^1.3.0",
     "envify": "^3.2.0",
     "jsx-loader": "^0.12.2",
-    "lab": "^5.2.1",
+    "lab": "git+https://git@github.com/ldesplat/lab.git",
     "react": "^0.12.2",
+    "react-tools": "^0.12.2",
     "reactify": "^1.0.0",
     "uglify-js": "^2.4.16",
-    "webpack": "^1.5.3",
     "webpack-dev-server": "^1.7.0"
   },
   "browserify-shim": {

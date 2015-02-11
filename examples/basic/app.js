@@ -13,11 +13,10 @@ var App = React.createClass({
   render: function() {
 
     return (
-      <Img alt="stuffy" srcSet={this.imgs.join(', ')} extra={{className:"stuffy", role:"presentation"}}/>
+      <Img nativeSupport={false} alt="Bacon..." srcSet={this.imgs.join(', ')} extra={{className:"baconImg"}}/>
     );
   }
 
 });
 
 React.render(<App/>, document.getElementById('example'));
-
