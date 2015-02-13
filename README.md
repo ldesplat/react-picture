@@ -22,7 +22,7 @@ var Img = require('react-picture').Image
 ...
 ```
 
-The following properties can be passed to the Picture component:
+The following properties can be passed to the Image component:
 - `alt` - Required and describes your picture
 - `srcSet` - Required and consists of a string formated like srcset
 - `nativeSupport` - Optional bool which when true forces srcset rendering. When false, it forces our implementation. This option is set to true by default unless we detect the browser does not support it.
@@ -36,25 +36,18 @@ The following properties can be passed to the Picture component:
 
 ## Roadmap
 
-### 0.0.2
-- Tests
-- Rubber bands state changes (time delay/group the resize events)
-
-### 0.0.3
-- TBD
-
 ### 0.1.0
 - Implement sizes attribute
 
 ### 1.0
 - Stable API
 - Correct implementation of match method
-- Verify srcset feature detection
+- ~~Verify srcset feature detection~~
 - ie8 & up browser support (w/React polyfills only)
 - Performance optimizations
-- Ismorphic support
+- ~~Ismorphic support~~
 - 100% test coverage
-- Travis CI
+- ~~Travis CI~~
 
 ### To be discussed
 - PictureContainer
