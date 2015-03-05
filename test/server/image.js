@@ -16,8 +16,8 @@ var it = lab.test;
 var internals = {
 
 	sampleSrcSet: 'http://fancyserver.com/image.jpg 600w, http://fancyserver.com/image2.jpg 1000w',
-	nativeOutput: '<img src="http://fancyserver.com/image.jpg" srcset="http://fancyserver.com/image.jpg 600w, http://fancyserver.com/image2.jpg 1000w">',
-	renderOutput: '<img src="http://fancyserver.com/image.jpg">'
+	nativeOutput: '<img alt="text" src="http://fancyserver.com/image.jpg" srcset="http://fancyserver.com/image.jpg 600w, http://fancyserver.com/image2.jpg 1000w">',
+	renderOutput: '<img alt="text" src="http://fancyserver.com/image.jpg">'
 };
 
 var Img = require('../..').Image;
@@ -28,7 +28,7 @@ describe('Image Component - Testing as NodeJS', function() {
 		var TestUtils = React.addons.TestUtils;
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet, nativeSupport: false})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, nativeSupport: false, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.renderOutput);
@@ -40,7 +40,7 @@ describe('Image Component - Testing as NodeJS', function() {
 		var TestUtils = React.addons.TestUtils;
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet, nativeSupport: true})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, nativeSupport: true, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.nativeOutput);
@@ -52,7 +52,7 @@ describe('Image Component - Testing as NodeJS', function() {
 		var TestUtils = React.addons.TestUtils;
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.nativeOutput);
@@ -130,7 +130,7 @@ describe('Image Component - Pretend to be a browser', function() {
 	it('native support is on', function(done) {
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.nativeOutput);
@@ -149,7 +149,7 @@ describe('Image Component - Pretend to be a browser', function() {
 		};
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.renderOutput);
@@ -168,7 +168,7 @@ describe('Image Component - Pretend to be a browser', function() {
 		};
 
 		var img = React.renderToStaticMarkup(
-			React.createElement(Img, {srcSet: internals.sampleSrcSet})
+			React.createElement(Img, {srcSet: internals.sampleSrcSet, alt: 'text'})
 		);
 
 		expect(img).to.equal(internals.renderOutput);

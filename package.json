@@ -4,7 +4,7 @@
   "description": "Responsive images component for React.JS",
   "main": "./lib/index",
   "scripts": {
-    "test": "lab -t 77 -L --ignore window,document -T lab-transform.js test/server",
+    "test": "lab -t 75 -L --ignore window,document -T lab-transform.js test/client-before.js test/client test/client-after.js test/server",
     "start": "webpack-dev-server --inline --content-base examples/",
     "build": "scripts/build"
   },
