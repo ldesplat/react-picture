@@ -12,4 +12,3 @@ lab.after(function (done) {
     delete global.errors;
     done();
 });
-

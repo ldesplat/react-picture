@@ -7,4 +7,3 @@ global.document.body.classList = {
     add: function () {},
     remove: function () {}
 };
-

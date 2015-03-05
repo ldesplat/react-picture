@@ -17,7 +17,7 @@ var internals = {
 
 	sampleSrcSet: 'http://fancyserver.com/image.jpg 600w, http://fancyserver.com/image2.jpg 1000w',
 	nativeOutput: '<img src="http://fancyserver.com/image.jpg" srcset="http://fancyserver.com/image.jpg 600w, http://fancyserver.com/image2.jpg 1000w">',
-	renderOutput: '<img src="http://fancyserver.com/image.jpg">',
+	renderOutput: '<img src="http://fancyserver.com/image.jpg">'
 };
 
 var Img = require('../..').Image;
@@ -79,11 +79,11 @@ describe('Image Component - Pretend to be a browser', function() {
 				createElement: function(elem) {
 					if (elem === 'img') {
 						return internals.createImg();
-					} else {
-						return {
-							'class': ''
-						}
 					}
+
+					return {
+						'class': ''
+					};
 				},
 
 				addEventListener: function(event, handler, bla) {
@@ -97,8 +97,7 @@ describe('Image Component - Pretend to be a browser', function() {
 				documentElement: {
 					clientWidth: 200,
 					clientHeight: 200
-				},
-
+				}
 			};
 		};
 
@@ -175,7 +174,5 @@ describe('Image Component - Pretend to be a browser', function() {
 		expect(img).to.equal(internals.renderOutput);
 
 		done();
-	})
-
-
+	});
 });
