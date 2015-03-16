@@ -4,7 +4,7 @@
   "description": "Responsive images component for React.JS",
   "main": "./lib/index",
   "scripts": {
-    "test": "lab -t 75 -L --ignore window,document -T lab-transform.js test/client-before.js test/client test/client-after.js test/server",
+    "test": "lab -t 75 -L --lint-options '{\"extensions\":[\".jsx\"]}' -S --ignore window,document -T lab-transform.js test/client-before.js test/client test/client-after.js test/server",
     "start": "webpack-dev-server --inline --content-base examples/",
     "build": "scripts/build"
   },
@@ -27,15 +27,15 @@
   },
   "homepage": "https://github.com/ldesplat/react-picture",
   "devDependencies": {
+    "babel-core": "^4.7.12",
+    "babel-loader": "^4.2.0",
     "browserify": "^8.1.3",
     "browserify-shim": "^3.8.2",
     "code": "^1.3.0",
     "envify": "^3.2.0",
     "jsdom": "^3.1.1",
-    "jsx-loader": "^0.12.2",
-    "lab": "^5.4.0",
-    "react": "^0.12.2",
-    "react-tools": "^0.12.2",
+    "lab": "^5.5.0",
+    "react": "^0.13.0",
     "reactify": "^1.0.0",
     "uglify-js": "^2.4.16",
     "webpack-dev-server": "^1.7.0"
