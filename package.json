@@ -2,12 +2,14 @@
   "name": "react-picture",
   "version": "0.0.2",
   "description": "Responsive images component for React.JS",
-  "main": "./lib/index",
+  "main": "./src/index",
   "scripts": {
-    "test": "lab -c -L --lint-options '{\"extensions\":[\".jsx\"]}' -S -T lab-transform.js test/client-before.js test/client test/client-after.js test/misc test/server",
+    "test": "lab -c -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' -S -T lab-transform.js test/client-before.js test/client test/client-after.js test/misc test/server",
     "test-cov-html": "lab -c -S -T lab-transform.js -r html -o coverage.html test/client-before.js test/client test/client-after.js test/misc test/server",
     "start": "webpack-dev-server --inline --content-base examples/",
-    "build": "scripts/build"
+    "build": "scripts/build",
+    "compile": "babel -d src/ lib/",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
   },
   "homepage": "https://github.com/ldesplat/react-picture",
   "devDependencies": {
-    "babel-core": "^4.7.12",
+    "babel": "^4.7.12",
     "babel-loader": "^4.2.0",
     "browserify": "^8.1.3",
     "browserify-shim": "^3.8.2",

@@ -21,7 +21,7 @@ var internals = {
 };
 
 
-var Img = require('../..').Image;
+var Img = require('../../lib/index').Image;
 
 
 describe('Image Component - Testing as NodeJS', function () {

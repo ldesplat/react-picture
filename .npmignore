@@ -2,3 +2,5 @@ webpack.config.js
 scripts
 examples
 .travis.yml
+lib
+

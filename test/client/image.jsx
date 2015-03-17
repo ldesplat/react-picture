@@ -13,7 +13,7 @@ var afterEach = lab.afterEach;
 var describe = lab.experiment;
 var it = lab.test;
 
-var Img = require('../..').Image;
+var Img = require('../../lib/index').Image;
 
 
 var internals = {

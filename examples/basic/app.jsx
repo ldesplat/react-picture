@@ -13,7 +13,7 @@ var App = React.createClass({
   render: function() {
 
     return (
-      <Img nativeSupport={false} alt='Bacon...' srcSet={this.imgs.join(', ')} extra={{className: 'baconImg'}}/>
+      <Img alt='Bacon...' srcSet={this.imgs.join(', ')} extra={{className: 'baconImg'}}/>
     );
   }
 

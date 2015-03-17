@@ -1,4 +1,4 @@
-var Babel = require('babel-core');
+var Babel = require('babel');
 
 module.exports = [{
     ext: '.jsx',
@@ -11,7 +11,7 @@ module.exports = [{
                 sourceFileName: filename
             };
             var result = Babel.transform(content, options);
-            
+
             return result.code;
         }
 
