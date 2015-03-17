@@ -17,7 +17,7 @@ var buildEntries = function () {
     var isDraft = dir.charAt(0) === '_';
 
     if (!isDraft && isDirectory(path.join(EXAMPLES_DIR, dir))) {
-      entries[dir] = path.join(EXAMPLES_DIR, dir, 'app.js');
+      entries[dir] = path.join(EXAMPLES_DIR, dir, 'app.jsx');
     }
 
     return entries;
@@ -39,6 +39,10 @@ module.exports = {
     loaders: [
       { test: /\.jsx$/, loader: 'babel-loader' }
     ]
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.jsx']
   },
 
   plugins: [
