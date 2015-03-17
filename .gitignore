@@ -7,3 +7,4 @@ node_modules
 # Distribution does not belong in repo
 dist
 
+coverage.html

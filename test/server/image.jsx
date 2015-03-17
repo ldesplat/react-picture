@@ -23,13 +23,13 @@ var internals = {
 
 var Img = require('../..').Image;
 
-/*
+
 describe('Image Component - Testing as NodeJS', function () {
 
     it('uses default native support', function(done) {
 
         var img = React.renderToStaticMarkup(
-            React.createElement(Img, {srcSet: internals.sampleSrcSet, alt: 'text'})
+            <Img srcSet={internals.sampleSrcSet} alt='text'/>
         );
 
         expect(img).to.equal(internals.nativeOutput);
@@ -37,4 +37,3 @@ describe('Image Component - Testing as NodeJS', function () {
         done();
     });
 });
-*/

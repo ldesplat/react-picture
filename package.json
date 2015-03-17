@@ -4,7 +4,8 @@
   "description": "Responsive images component for React.JS",
   "main": "./lib/index",
   "scripts": {
-    "test": "lab -c -L --lint-options '{\"extensions\":[\".jsx\"]}' -S --ignore window,document -T lab-transform.js test/client-before.js test/client test/client-after.js test/server",
+    "test": "lab -c -L --lint-options '{\"extensions\":[\".jsx\"]}' -S -T lab-transform.js test/client-before.js test/client test/client-after.js test/misc test/server",
+    "test-cov-html": "lab -c -S -T lab-transform.js -r html -o coverage.html test/client-before.js test/client test/client-after.js test/misc test/server",
     "start": "webpack-dev-server --inline --content-base examples/",
     "build": "scripts/build"
   },

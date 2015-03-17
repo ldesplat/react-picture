@@ -25,8 +25,6 @@ var Img = require('react-picture').Image
 The following properties can be passed to the Image component:
 - `alt` - Required and describes your picture
 - `srcSet` - Required and consists of a string formated like srcset
-- `nativeSupport` - Optional bool which when true forces srcset rendering. When false, it forces our implementation. This option is set to true by default unless we detect the browser does not support it.
-- `updateOnResize` - Optional bool which decides if the image is resized when viewport changes (only takes effect when nativeSupport is false). True by default.
 - `extra` - Optional object which contains properties that will be put on img tag
 
 ## Features

@@ -1,4 +1,5 @@
 var React = require('react');
+var Utils = require('../utils');
 
 
 /** Equivalent to html <img> element
@@ -15,7 +16,7 @@ var ImageComponent = module.exports = React.createClass({
     },
 
 
-    getDefaultProps: function() {
+    getDefaultProps: function () {
 
         return {
             extra: {}
@@ -23,40 +24,40 @@ var ImageComponent = module.exports = React.createClass({
     },
 
 
-    getInitialState: function() {
+    getInitialState: function () {
 
         var nativeSupport = true;
         if (typeof document !== 'undefined') {
             var img = document.createElement('img');
-            nativeSupport = ('sizes' in img) && ('srcset' in img);
+            nativeSupport = 'srcset' in img;
         }
 
         return {
-            w: ImageComponent._getWidth(),
-            h: ImageComponent._getHeight(),
-            x: ImageComponent._getDensity(),
+            w: Utils.getWidth(),
+            h: Utils.getHeight(),
+            x: Utils.getDensity(),
             nativeSupport: nativeSupport
         };
     },
 
 
-    componentDidMount: function() {
+    componentDidMount: function () {
 
         if (!this.state.nativeSupport) {
-            window.addEventListener('resize', this._onResize, false);
+            window.addEventListener('resize', this.resizeThrottler, false);
         }
     },
 
 
-    componentWillUnmount: function() {
+    componentWillUnmount: function () {
 
         if (!this.state.nativeSupport) {
-            window.removeEventListener('resize', this._onResize, false);
+            window.removeEventListener('resize', this.resizeThrottler, false);
         }
     },
 
 
-    render: function() {
+    render: function () {
 
         if (!this.props.srcSet) {
             return null;
@@ -69,12 +70,12 @@ var ImageComponent = module.exports = React.createClass({
         }
 
         return (
-            <img alt={this.props.alt} src={this._matchImage(candidates)} {...this.props.extra}/>
+            <img alt={this.props.alt} src={ImageComponent._matchImage(candidates, Utils.getHeight(), Utils.getWidth(), Utils.getDensity())} {...this.props.extra}/>
         );
     },
 
 
-    renderNative: function(candidates) {
+    renderNative: function (candidates) {
 
         return (
             <img alt={this.props.alt} src={candidates[0].url} srcSet={this.props.srcSet} {...this.props.extra} />
@@ -82,21 +83,34 @@ var ImageComponent = module.exports = React.createClass({
     },
 
 
-    _onResize: function() {
+    // Taken from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+    resizing: false,
+    resizeThrottler: function () {
 
-        this.setState({w: this._getWidth(), h: this._getHeight()});
+        if (!this.resizing) {
+            this.resizing = true;
+
+            if (window && window.requestAnimationFrame) {
+                window.requestAnimationFrame(this.onResize);
+            } else {
+                setTimeout(this.onResize, 66);
+            }
+        }
+    },
+
+
+    onResize: function () {
+
+        this.setState({w: Utils.getWidth(), h: Utils.getHeight(), x: Utils.getDensity()});
+        this.resizing = false;
     },
 
 
     statics: {
 
-        _buildCandidates: function(srcset) {
+        _buildCandidates: function (srcset) {
 
-            if (!srcset) {
-                return [];
-            }
-
-            return srcset.split(',').map(function(srcImg) {
+            return srcset.split(',').map(function (srcImg) {
 
                 var stringComponents = srcImg.trim().split(' ');
                 var candidate = {
@@ -124,7 +138,7 @@ var ImageComponent = module.exports = React.createClass({
         },
 
 
-        __compare: function(a, b, state, accessorFn) {
+        __compare: function (a, b, state, accessorFn) {
 
             var aDt = accessorFn(a) - state;
             var bDt = accessorFn(b) - state;
@@ -155,13 +169,13 @@ var ImageComponent = module.exports = React.createClass({
         },
 
 
-        _matchImage: function(candidates, height, width, density) {
+        _matchImage: function (candidates, height, width, density) {
 
             if (!candidates || candidates.length === 0) {
                 return null;
             }
 
-            return candidates.reduce(function(a, b) {
+            return candidates.reduce(function (a, b) {
 
                 if (a.x === b.x) {
                     // Both have the same density so attempt to find a better one using width
@@ -171,45 +185,14 @@ var ImageComponent = module.exports = React.createClass({
                             return a; // hey, it came first!
                         }
 
-                        return ImageComponent.__compare(a, b, height, function(img) { return img.h; });
+                        return ImageComponent.__compare(a, b, height, function (img) { return img.h; });
                     }
 
-                    return ImageComponent.__compare(a, b, width, function(img) { return img.w; });
+                    return ImageComponent.__compare(a, b, width, function (img) { return img.w; });
                 }
 
-                return ImageComponent.__compare(a, b, density, function(img) { return img.x; });
+                return ImageComponent.__compare(a, b, density, function (img) { return img.x; });
             }).url;
-        },
-
-
-        _getWidth: function() {
-
-            if (typeof window !== 'undefined') {
-                return window.innerWidth || document.documentElement.clientWidth;
-            }
-
-            return 0;
-        },
-
-
-        _getHeight: function() {
-
-            if (typeof window !== 'undefined') {
-                return window.innerHeight || document.documentElement.clientHeight;
-            }
-
-            return 0;
-        },
-
-
-        _getDensity: function() {
-
-            if (typeof window !== 'undefined') {
-                return window.devicePixelRatio;
-            }
-
-            return 1;
         }
     }
-
 });
