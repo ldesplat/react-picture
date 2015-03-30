@@ -1,6 +1,6 @@
 {
   "name": "react-picture",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Responsive images component for React.JS",
   "main": "./src/index",
   "scripts": {
