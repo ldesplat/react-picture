@@ -10,13 +10,13 @@ React component for rendering responsive images. Attempts to implement `<img src
 Then use in your react app like so:
 
 ```
-var Img = require('react-picture').Image
+var Img = require('react-picture').Image;
 ...
    render: function() {
-   	  var imgs = "//placebacon.net/200/150 600w, //placebacon.net/300/300 800w";
+   	  var imgs = '//placebacon.net/200/150 600w, //placebacon.net/300/300 800w';
 
       return (
-      	<Img alt="Your picture description" srcSet={imgs} extra={{className="myImg"}}/>
+      	<Img alt='Your picture description' srcSet={imgs} extra={{className='myImg'}}/>
       );
    }
 ...

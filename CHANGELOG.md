@@ -1,9 +1,11 @@
-## v0.0.3 (In Progress)
+## v0.0.4 (Upcoming)
+- Get to 100% test coverage
+
+## v0.0.3
 - update to react 0.13
 - simplify codebase
 - ensure test infrastructure is properly set up with recent changes
 - rename .js to .jsx for components
-- remove browserify and use webpack exclusively
 - npm prepublish step
 
 ## v0.0.2
