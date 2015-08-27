@@ -101,7 +101,7 @@ var ImageComponent = module.exports = React.createClass({
 
     onResize: function () {
 
-        this.setState({w: Utils.getWidth(), h: Utils.getHeight(), x: Utils.getDensity()});
+        this.setState({ w: Utils.getWidth(), h: Utils.getHeight(), x: Utils.getDensity() });
         this.resizing = false;
     },
 
@@ -185,13 +185,13 @@ var ImageComponent = module.exports = React.createClass({
                             return a; // hey, it came first!
                         }
 
-                        return ImageComponent.__compare(a, b, height, function (img) { return img.h; });
+                        return ImageComponent.__compare(a, b, height, img => img.h);
                     }
 
-                    return ImageComponent.__compare(a, b, width, function (img) { return img.w; });
+                    return ImageComponent.__compare(a, b, width, img => img.w);
                 }
 
-                return ImageComponent.__compare(a, b, density, function (img) { return img.x; });
+                return ImageComponent.__compare(a, b, density, img => img.x);
             }).url;
         }
     }

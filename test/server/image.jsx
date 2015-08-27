@@ -26,7 +26,7 @@ var Img = require('../../lib/index').Image;
 
 describe('Image Component - Testing as NodeJS', function () {
 
-    it('uses default native support', function(done) {
+    it('uses default native support', function (done) {
 
         var img = React.renderToStaticMarkup(
             <Img srcSet={internals.sampleSrcSet} alt='text'/>

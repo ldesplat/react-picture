@@ -22,11 +22,12 @@ var internals = {
 
 
 internals.exDOM = function () {
+
     return document.getElementById('example');
 };
 
 
-describe('JSDOM - Native -', function() {
+describe('JSDOM - Native -', function () {
 
     before(function (done) {
 
@@ -81,7 +82,7 @@ describe('JSDOM - Native -', function() {
     });
 });
 
-describe('JSDOM - Not native -', function() {
+describe('JSDOM - Not native -', function () {
 
     afterEach(function (done) {
 

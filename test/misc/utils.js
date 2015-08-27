@@ -12,71 +12,115 @@ var Utils = require('../../lib/utils');
 
 describe('Utils methods -', function () {
 
-	it('gets height', function (done) {
+    it('gets height', function (done) {
 
-		var height = Utils.getHeight();
-		expect(height).to.equal(0);
-		done();
-	});
+        var height = Utils.getHeight();
+        expect(height).to.equal(0);
+        done();
+    });
 
-	it('gets width', function (done) {
+    it('gets width', function (done) {
 
-		var width = Utils.getWidth();
-		expect(width).to.equal(0);
-		done();
-	});
+        var width = Utils.getWidth();
+        expect(width).to.equal(0);
+        done();
+    });
 
-	it('gets density', function (done) {
+    it('gets density', function (done) {
 
-		var density = Utils.getDensity();
-		expect(density).to.equal(1);
-		done();
-	});
-});
+        var density = Utils.getDensity();
+        expect(density).to.equal(1);
+        done();
+    });
 
-describe('Utils methods with document -', function () {
+    it('gets height with document.documentElement', function (done) {
 
-	lab.before(function (done) {
+        global.window = {};
+        global.document = {
+            documentElement: {
+                clientHeight: 764
+            }
+        };
 
-		global.window = {
-			devicePixelRatio: 2
-		};
-		global.document = {
-			documentElement: {
-				clientWidth: 1024,
-				clientHeight: 764
-			}
-		};
+        var height = Utils.getHeight();
 
-		done();
-	});
+        delete global.window;
+        delete global.document;
 
-	lab.after(function (done) {
+        expect(height).to.equal(764);
+        done();
+    });
 
-		delete global.window;
-		delete global.document;
+    it('gets width with document.documentElement', function (done) {
 
-		done();
-	});
+        global.window = {};
+        global.document = {
+            documentElement: {
+                clientWidth: 1024
+            }
+        };
 
-	it('gets height', function (done) {
+        var width = Utils.getWidth();
 
-		var height = Utils.getHeight();
-		expect(height).to.equal(764);
-		done();
-	});
+        delete global.window;
+        delete global.document;
 
-	it('gets width', function (done) {
+        expect(width).to.equal(1024);
+        done();
+    });
 
-		var width = Utils.getWidth();
-		expect(width).to.equal(1024);
-		done();
-	});
+    it('gets height with window.innerHeight', function (done) {
 
-	it('gets density', function (done) {
+        global.window = {
+            innerHeight: 512
+        };
 
-		var density = Utils.getDensity();
-		expect(density).to.equal(2);
-		done();
-	});
+        var height = Utils.getHeight();
+
+        delete global.window;
+
+        expect(height).to.equal(512);
+        done();
+    });
+
+    it('gets width with window.innerWidth', function (done) {
+
+        global.window = {
+            innerWidth: 256
+        };
+
+        var width = Utils.getWidth();
+
+        delete global.window;
+
+        expect(width).to.equal(256);
+        done();
+    });
+
+
+    it('gets density with window.devicePixelRatio', function (done) {
+
+        global.window = {
+            devicePixelRatio: 2
+        };
+
+        var density = Utils.getDensity();
+
+        delete global.window;
+
+        expect(density).to.equal(2);
+        done();
+    });
+
+    it('gets density with window but no devicePixelRatio', function (done) {
+
+        global.window = {};
+
+        var density = Utils.getDensity();
+
+        delete global.window;
+
+        expect(density).to.equal(1);
+        done();
+    });
 });
