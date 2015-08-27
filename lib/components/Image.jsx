@@ -34,7 +34,6 @@ var ImageComponent = module.exports = React.createClass({
 
         return {
             w: Utils.getWidth(),
-            h: Utils.getHeight(),
             x: Utils.getDensity(),
             nativeSupport: nativeSupport
         };
@@ -70,7 +69,7 @@ var ImageComponent = module.exports = React.createClass({
         }
 
         return (
-            <img alt={this.props.alt} src={ImageComponent._matchImage(candidates, Utils.getHeight(), Utils.getWidth(), Utils.getDensity())} {...this.props.extra}/>
+            <img alt={this.props.alt} src={ImageComponent._matchImage(candidates, Utils.getWidth(), Utils.getDensity())} {...this.props.extra}/>
         );
     },
 
@@ -101,7 +100,7 @@ var ImageComponent = module.exports = React.createClass({
 
     onResize: function () {
 
-        this.setState({ w: Utils.getWidth(), h: Utils.getHeight(), x: Utils.getDensity() });
+        this.setState({ w: Utils.getWidth(), x: Utils.getDensity() });
         this.resizing = false;
     },
 
@@ -116,7 +115,6 @@ var ImageComponent = module.exports = React.createClass({
                 var candidate = {
                     url: stringComponents[0].trim(),
                     w: 0,
-                    h: 0,
                     x: 1.0
                 };
 
@@ -124,8 +122,6 @@ var ImageComponent = module.exports = React.createClass({
                     var str = stringComponents[i].trim();
                     if (str.indexOf('w', str.length - 1) !== -1) {
                         candidate.w = parseInt(str.substring(0, str.length - 1));
-                    } else if (str.indexOf('h', str.length - 1) !== -1) {
-                        candidate.h = parseInt(str.substring(0, str.length - 1));
                     } else if (str.indexOf('x', str.length - 1) !== -1) {
                         candidate.x = parseFloat(str.substring(0, str.length - 1));
                     } else {
@@ -180,12 +176,7 @@ var ImageComponent = module.exports = React.createClass({
                 if (a.x === b.x) {
                     // Both have the same density so attempt to find a better one using width
                     if (a.w === b.w) {
-                        // Both have the same width so attempt to use height
-                        if (a.h === b.h) {
-                            return a; // hey, it came first!
-                        }
-
-                        return ImageComponent.__compare(a, b, height, img => img.h);
+                        return a; // hey, it came first!
                     }
 
                     return ImageComponent.__compare(a, b, width, img => img.w);

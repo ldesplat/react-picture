@@ -12,13 +12,6 @@ var Utils = require('../../lib/utils');
 
 describe('Utils methods -', function () {
 
-    it('gets height', function (done) {
-
-        var height = Utils.getHeight();
-        expect(height).to.equal(0);
-        done();
-    });
-
     it('gets width', function (done) {
 
         var width = Utils.getWidth();
@@ -30,24 +23,6 @@ describe('Utils methods -', function () {
 
         var density = Utils.getDensity();
         expect(density).to.equal(1);
-        done();
-    });
-
-    it('gets height with document.documentElement', function (done) {
-
-        global.window = {};
-        global.document = {
-            documentElement: {
-                clientHeight: 764
-            }
-        };
-
-        var height = Utils.getHeight();
-
-        delete global.window;
-        delete global.document;
-
-        expect(height).to.equal(764);
         done();
     });
 
@@ -66,20 +41,6 @@ describe('Utils methods -', function () {
         delete global.document;
 
         expect(width).to.equal(1024);
-        done();
-    });
-
-    it('gets height with window.innerHeight', function (done) {
-
-        global.window = {
-            innerHeight: 512
-        };
-
-        var height = Utils.getHeight();
-
-        delete global.window;
-
-        expect(height).to.equal(512);
         done();
     });
 
