@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/ldesplat/react-picture",
   "devDependencies": {
-    "@ljharb/eslint-config": "^1.0.5",
     "babel": "5.x.x",
     "babel-core": "5.x.x",
     "babel-loader": "5.x.x",
