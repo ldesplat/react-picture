@@ -1,14 +1,15 @@
 {
   "name": "react-picture",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Responsive images component for React.JS",
   "main": "./src/index",
   "scripts": {
-    "test": "lab -c -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' -S -T node_modules/lab-babel",
+    "clean": "rimraf src dist",
+    "build": "babel -d src/ lib/",
+    "build:umd": "webpack lib/index.js dist/react-picture.js && NODE_ENV=production webpack lib/index.js dist/react-picture.min.js",
+    "test": "lab -S -L -T node_modules/lab-babel -t 70",
     "test-cov-html": "lab -c -S -T node_modules/lab-babel -r html -o coverage.html",
-    "start": "webpack-dev-server --inline --content-base examples/",
-    "compile": "babel -d src/ lib/",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run test && npm run clean && npm run build && npm run build:umd"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/ldesplat/react-picture",
   "devDependencies": {
+    "@ljharb/eslint-config": "^1.0.5",
     "babel": "5.x.x",
     "babel-core": "5.x.x",
     "babel-loader": "5.x.x",
@@ -36,10 +38,8 @@
     "lab": "5.x.x",
     "lab-babel": "1.x.x",
     "react": "0.13.x",
+    "rimraf": "^2.4.3",
     "webpack": "1.x.x",
     "webpack-dev-server": "1.x.x"
-  },
-  "browserify-shim": {
-    "react": "global:React"
   }
 }

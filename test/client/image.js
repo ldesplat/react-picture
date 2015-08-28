@@ -1,4 +1,4 @@
-var React = require('react/addons');
+/*var React = require('react/addons');
 var Code = require('code');
 var Lab = require('lab');
 
@@ -89,22 +89,7 @@ describe('JSDOM - Not native -', function () {
         React.unmountComponentAtNode(internals.exDOM());
         done();
     });
-/*
-    before(function (done) {
 
-        window.resizeBy = function (xDelta, yDelta) {
-
-            window.innerWidth += xDelta;
-            window.innerHeight += yDelta;
-            window.outerWidth += xDelta;
-            window.outerHeight += yDelta;
-
-            window.dispatchEvent.call('resize');
-        };
-
-        done();
-    });
-*/
 
     it('renders a null image', function (done) {
 
@@ -124,14 +109,6 @@ describe('JSDOM - Not native -', function () {
         expect(html).to.not.contain('srcset');
         done();
     });
-/*
-    it('resize the viewport', function (done) {
 
-        var element = React.render(<Img srcSet={internals.sampleSrcSet} alt='text'/>, internals.exDOM());
-        var html = internals.exDOM().innerHTML;
-
-        window.resizeBy(200, 200);
-        done();
-    });
-*/
 });
+*/

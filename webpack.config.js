@@ -1,55 +1,39 @@
-var Fs = require('fs');
-var Path = require('path');
+'use strict';
+
 var Webpack = require('webpack');
 
-var EXAMPLES_DIR = path.resolve(__dirname, 'examples');
+var plugins = [
+    new Webpack.optimize.OccurenceOrderPlugin(),
+    new Webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
+];
 
-var isDirectory = function (dir) {
-
-    return Fs.lstatSync(dir).isDirectory();
-};
-
-var buildEntries = function () {
-
-    return Fs.readdirSync(EXAMPLES_DIR).reduce(function (entries, dir) {
-
-        if (dir === 'build') {
-            return entries;
-        }
-
-        var isDraft = dir.charAt(0) === '_';
-
-        if (!isDraft && isDirectory(Path.join(EXAMPLES_DIR, dir))) {
-            entries[dir] = Path.join(EXAMPLES_DIR, dir, 'app.jsx');
-        }
-
-        return entries;
-    }, {});
-};
+if (process.env.NODE_ENV === 'production') {
+    plugins.push(
+        new Webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                'screw_ie8': true,
+                warnings: false
+            }
+        })
+    );
+}
 
 module.exports = {
-
-    entry: buildEntries(),
-
-    output: {
-        filename: '[name].js',
-        chunkFilename: '[id].chunk.js',
-        path: 'examples/__build__',
-        publicPath: '/__build__/'
-    },
-
     module: {
-        loaders: [
-            { test: /\.jsx$/, loader: 'babel-loader' }
-        ]
+        loaders: [{
+            test: /\.js$/,
+            loaders: ['babel-loader'],
+            exclude: /node_modules/
+        }]
     },
-
+    output: {
+        library: 'react-picture',
+        libraryTarget: 'umd'
+    },
+    plugins: plugins,
     resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-
-    plugins: [
-        new Webpack.optimize.CommonsChunkPlugin('shared.js')
-    ]
-
+        extensions: ['', '.js']
+    }
 };

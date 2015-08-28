@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var Code = require('code');
 var Lab = require('lab');
 
@@ -6,10 +6,6 @@ var Lab = require('lab');
 // Test shortcuts
 var lab = exports.lab = Lab.script();
 var expect = Code.expect;
-var before = lab.before;
-var after = lab.after;
-var beforeEach = lab.beforeEach;
-var afterEach = lab.afterEach;
 var describe = lab.experiment;
 var it = lab.test;
 
