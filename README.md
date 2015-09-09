@@ -16,7 +16,7 @@ var Img = require('react-picture').Image;
    	  var imgs = '//placebacon.net/200/150 600w, //placebacon.net/300/300 800w';
 
       return (
-      	<Img alt='Your picture description' srcSet={imgs} extra={{className='myImg'}}/>
+      	<Img alt='Your picture description' srcSet={imgs} extra={{className:'myImg'}}/>
       );
    }
 ...
