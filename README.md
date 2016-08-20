@@ -1,6 +1,12 @@
 # react-picture
 [![Build Status](https://travis-ci.org/ldesplat/react-picture.svg?branch=master)](https://travis-ci.org/ldesplat/react-picture)
 
+## This component is not maintained anymore but its source code may be of use to some people
+
+You should take a look at https://github.com/reacttraining/react-media as an example on how the React community has been able to make a more abstracted version of this very same concept. As before, you should also check the Alternative Libraries section below for some more inspiration.
+
+## Description
+
 React component for rendering responsive images. Attempts to implement `<img srcset=...>` support in non-compliant browsers, otherwize renders the native `<img srcset>`. Will eventually support Picture & Source elements.
 
 ## How to use
