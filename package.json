@@ -32,8 +32,10 @@
   "devDependencies": {
     "babel": "5.x.x",
     "babel-core": "5.x.x",
+    "babel-eslint": "^4.1.8",
     "babel-loader": "5.x.x",
     "code": "1.x.x",
+    "eslint-plugin-react": "^3.16.1",
     "lab": "5.x.x",
     "lab-babel": "1.x.x",
     "react": "0.13.x",

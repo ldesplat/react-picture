@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
     plugins.push(
         new Webpack.optimize.UglifyJsPlugin({
             compressor: {
-                'screw_ie8': true,
+                screw_ie8: true,
                 warnings: false
             }
         })
